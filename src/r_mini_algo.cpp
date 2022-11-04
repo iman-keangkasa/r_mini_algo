@@ -29,6 +29,17 @@ RobotKinematics::RobotKinematics(ros::NodeHandle* nh)
   joint_states_sub_ = nh_.subscribe("joint_states", 1000, &RobotKinematics::jointStatesCallback_, this);
 }
 
+RobotKinematics::RobotKinematics()
+  : nh_("~")
+  , robot_model_loader_("robot_description")
+  , reference_point_position_ (0.0, 0.0, 0.0)
+{
+  kinematic_model_ = robot_model_loader_.getModel();
+  kinematic_state_.reset(new robot_state::RobotState(kinematic_model_));
+  joint_model_group_ = kinematic_model_->getJointModelGroup("arm");
+  joint_states_sub_ = nh_.subscribe("joint_states", 1000, &RobotKinematics::jointStatesCallback_, this);
+}
+
 RobotKinematics::~RobotKinematics() 
 {
   ROS_INFO_STREAM("DESTRUCTOR IS CALLED");

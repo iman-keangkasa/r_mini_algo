@@ -6,7 +6,7 @@ int main( int argc, char ** argv)
   ros::AsyncSpinner spinner(0);
   spinner.start();
 
-  r_mini::RobotKinematics r_jacobian(&nh,"joint_states");
+  r_mini::RobotKinematics r_jacobian(&nh);
   while(ros::ok()) {};
   //ros::spin();  
   return 0;

@@ -16,6 +16,7 @@ class RobotKinematics
 public:
   RobotKinematics(ros::NodeHandle* nh, std::string joint_states_topic);
   RobotKinematics(ros::NodeHandle* nh);
+  RobotKinematics();
   ~RobotKinematics();
   void getJacobian();
   //getHessian();
